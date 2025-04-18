@@ -1,28 +1,28 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
-import { View, Text, TouchableOpacity, Button } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { View, Text, TouchableOpacity, Button } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import Animated, {
   useSharedValue,
   useAnimatedProps,
   withTiming,
-} from 'react-native-reanimated';
-import Svg, { Circle, Rect } from 'react-native-svg';
-import MyContext from '../context/MyContext';
+} from "react-native-reanimated";
+import Svg, { Circle, Rect } from "react-native-svg";
+import MyContext from "../context/MyContext";
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 function HomeScreen() {
   useEffect(() => {
-    console.log('Mounted');
+    console.log("Mounted");
 
     return () => {
-      console.log('UnMounted');
+      console.log("UnMounted");
       //unmounting
     };
   }, []);
   //  const fadeAnim = useRef(new Animated.Value(0)).current;
   const r = useSharedValue(10);
-  const color = useSharedValue('rgb(43,88,87)');
+  const color = useSharedValue("rgb(43,88,87)");
   const [switchState, setSwitchState] = useState(true);
   const navigation = useNavigation();
   const { data, setData, data1, setData1 } = useContext(MyContext);
@@ -43,13 +43,13 @@ function HomeScreen() {
 
   const handlePress = (reverse = false) => {
     const myArray = [
-      'rgb(41,8,87)',
-      'rgb(43,199,87)',
-      'rgb(430,2,87)',
-      'rgb(22,22,111)',
-      'rgb(43,88,87)',
-      'rgb(230,230,250)',
-      'rgb(255,165,0)',
+      "rgb(41,8,87)",
+      "rgb(43,199,87)",
+      "rgb(430,2,87)",
+      "rgb(22,22,111)",
+      "rgb(43,88,87)",
+      "rgb(230,230,250)",
+      "rgb(255,165,0)",
     ];
     const randomElement = myArray[Math.floor(Math.random() * myArray.length)];
     r.value = reverse ? r.value - 5 : r.value + 5;
@@ -68,9 +68,9 @@ function HomeScreen() {
     <View
       style={{
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'yellow',
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "yellow",
       }}
     >
       {/* <Animated.View
@@ -104,14 +104,14 @@ function HomeScreen() {
       <TouchableOpacity onPress={() => handlePress(true)}>
         <Text>Magic Reverse</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+      <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
         <Text>Next</Text>
       </TouchableOpacity>
       <Text>{data1}</Text>
       <Text>{data}</Text>
       <Button
         title="Update Data 1"
-        onPress={() => setData1('New updated data 1 from context')}
+        onPress={() => setData1("New updated data 1 from context")}
       />
     </View>
   );

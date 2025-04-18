@@ -6,10 +6,10 @@ import React, {
   useMemo,
   forwardRef,
   useContext,
-} from 'react';
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
-import MyContext from '../context/MyContext';
-import { useNavigation } from '@react-navigation/native';
+} from "react";
+import { View, Text, StyleSheet, TextInput, Button } from "react-native";
+import MyContext from "../context/MyContext";
+import { useNavigation } from "@react-navigation/native";
 
 // const CustomTextInput = forwardRef((props, ref)=>(
 //     <View>
@@ -40,14 +40,14 @@ function ForwardRef() {
   console.log("Parent rendered");
   const handleFocusInput = () => {
     if (inputRef.current) {
-      console.log('inputRef.current1', inputRef.current);
+      console.log("inputRef.current1", inputRef.current);
       inputRef.current.focus();
     }
   };
 
   const handleBlurInput = () => {
     if (inputRef.current) {
-      console.log('inputRef.current2', inputRef.current);
+      console.log("inputRef.current2", inputRef.current);
       inputRef.current.blur();
     }
   };
@@ -70,7 +70,7 @@ function ForwardRef() {
   }, []);
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text style={styles.textStyle}>ForwardRef</Text>
       <MemoizedTextComp data="static text" />
       {/* <CustomTextInput  data='static text'/> */}
@@ -84,11 +84,11 @@ function ForwardRef() {
         <Button title='BlurInput' onPress={handleBlurInput}/> */}
       <Button
         title="New Data"
-        onPress={() => setData('New updated data from context')}
+        onPress={() => setData("New updated data from context")}
       />
       <Button
         title="Go To Next Screen"
-        onPress={() => navigation.navigate('Home')}
+        onPress={() => navigation.navigate("Home")}
       />
     </View>
   );

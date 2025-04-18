@@ -61,17 +61,17 @@
 //   );
 // }
 
-import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import React from "react";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import Animated, {
   useSharedValue,
   withSpring,
   useAnimatedStyle,
   withTiming,
-} from 'react-native-reanimated';
+} from "react-native-reanimated";
 
 const AnimatedComp = () => {
-  const animatedColor = useSharedValue('blue');
+  const animatedColor = useSharedValue("blue");
   const animatedSize = useSharedValue(100);
   const animatedPositionX = useSharedValue(0);
   const animatedPositionY = useSharedValue(0);
@@ -119,8 +119,8 @@ const AnimatedComp = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   box: {
     borderRadius: 10,

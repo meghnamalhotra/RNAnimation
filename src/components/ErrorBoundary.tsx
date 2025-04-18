@@ -1,6 +1,6 @@
-import React from 'react';
-import { SafeAreaView, Text, StyleSheet } from 'react-native';
-import Logger from '../utils/LoggerUtil';
+import React from "react";
+import { SafeAreaView, Text, StyleSheet } from "react-native";
+import Logger from "../utils/LoggerUtil";
 
 interface ErrorBoundaryState {
   hasError: boolean;
@@ -27,7 +27,7 @@ export default class ErrorBoundary extends React.Component<
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     // We can also log the error to an error reporting service
-    Logger.log('Some JS error occurred', error, errorInfo);
+    Logger.log("Some JS error occurred", error, errorInfo);
   }
 
   render() {
@@ -48,7 +48,7 @@ export default class ErrorBoundary extends React.Component<
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

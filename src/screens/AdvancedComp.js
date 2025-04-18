@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from "react";
 import {
   View,
   FlatList,
@@ -7,102 +7,102 @@ import {
   Button,
   StyleSheet,
   SectionList,
-} from 'react-native';
+} from "react-native";
 
 const DATA = [
   {
-    id: '1',
-    title: 'Title 1',
+    id: "1",
+    title: "Title 1",
   },
   {
-    id: '2',
-    title: 'Title 2',
+    id: "2",
+    title: "Title 2",
   },
   {
-    id: '3',
-    title: 'Title 3',
+    id: "3",
+    title: "Title 3",
   },
   {
-    id: '4',
-    title: 'Title 4',
+    id: "4",
+    title: "Title 4",
   },
 ];
 
 const SECTIONS = [
   {
-    title: 'Section 1',
+    title: "Section 1",
     data: [
       {
-        id: '1',
-        title: 'Item 1',
+        id: "1",
+        title: "Item 1",
       },
       {
-        id: '2',
-        title: 'Item 2',
+        id: "2",
+        title: "Item 2",
       },
     ],
   },
   {
-    title: 'Section 2',
+    title: "Section 2",
     data: [
       {
-        id: '3',
-        title: 'Item 3',
+        id: "3",
+        title: "Item 3",
       },
       {
-        id: '4',
-        title: 'Item 4',
+        id: "4",
+        title: "Item 4",
       },
     ],
   },
   {
-    title: 'Section 3',
+    title: "Section 3",
     data: [
       {
-        id: '5',
-        title: 'Item 5',
+        id: "5",
+        title: "Item 5",
       },
       {
-        id: '6',
-        title: 'Item 6',
+        id: "6",
+        title: "Item 6",
       },
       {
-        id: '7',
-        title: 'Item 7',
+        id: "7",
+        title: "Item 7",
       },
     ],
   },
   {
-    title: 'Section 4',
+    title: "Section 4",
     data: [
       {
-        id: '5',
-        title: 'Item 5',
+        id: "5",
+        title: "Item 5",
       },
       {
-        id: '6',
-        title: 'Item 6',
+        id: "6",
+        title: "Item 6",
       },
       {
-        id: '7',
-        title: 'Item 7',
+        id: "7",
+        title: "Item 7",
       },
     ],
   },
   {
-    title: 'Section 5',
+    title: "Section 5",
     data: [
       {
-        id: '5',
-        title: 'Item 5',
+        id: "5",
+        title: "Item 5",
       },
       {
-        id: '6',
-        title: 'Item 6',
+        id: "6",
+        title: "Item 6",
       },
       {
-        id: '7',
-        title: 'Item 7',
+        id: "7",
+        title: "Item 7",
       },
     ],
   },
@@ -112,7 +112,7 @@ const Item = ({ title }) => {
   return (
     <View
       style={{
-        backgroundColor: 'pink',
+        backgroundColor: "pink",
         marginHorizontal: 20,
         height: 50,
         marginVertical: 10,
@@ -156,7 +156,7 @@ const AdvancedComp = () => {
     inputRef.current.blur();
   };
   useEffect(() => {
-    console.log('Effect called');
+    console.log("Effect called");
   }, [count]);
   return (
     <>
@@ -171,7 +171,7 @@ const AdvancedComp = () => {
         renderItem={({ item }) => <Item title={item.title} />}
         renderSectionHeader={({ section }) => {
           return (
-            <View style={{ height: 30, backgroundColor: 'yellow' }}>
+            <View style={{ height: 30, backgroundColor: "yellow" }}>
               <Text>{section.title}</Text>
             </View>
           );
@@ -181,8 +181,8 @@ const AdvancedComp = () => {
       <TextInput
         style={{
           borderWidth: 1,
-          borderColor: 'grey',
-          backgroundColor: 'white',
+          borderColor: "grey",
+          backgroundColor: "white",
           padding: 10,
         }}
         ref={inputRef}
