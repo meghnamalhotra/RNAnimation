@@ -1,6 +1,6 @@
-import { useNavigation } from "@react-navigation/native";
-import React, { useEffect } from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect } from 'react';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -8,7 +8,7 @@ import Animated, {
   withTiming,
   repeat,
   withRepeat,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 
 const SettingsScreen = () => {
   const navigation = useNavigation();
@@ -25,6 +25,7 @@ const SettingsScreen = () => {
     );
   };
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     rotateSquare();
   }, []);
 
@@ -39,7 +40,7 @@ const SettingsScreen = () => {
       <Animated.View style={[styles.square, animatedStyle]} />
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("Lottie");
+          navigation.navigate('Lottie');
         }}
         style={{ marginTop: 50 }}
       >
@@ -52,13 +53,13 @@ const SettingsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   square: {
     width: 100,
     height: 100,
-    backgroundColor: "blue",
+    backgroundColor: 'blue',
   },
 });
 

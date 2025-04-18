@@ -1,13 +1,13 @@
-import React from "react";
-import { SafeAreaView, Text, StyleSheet } from "react-native";
-import Logger from "../utils/LoggerUtil";
+import React from 'react';
+import { SafeAreaView, Text, StyleSheet } from 'react-native';
+import Logger from '../utils/LoggerUtil';
 
 interface ErrorBoundaryState {
   hasError: boolean;
 }
 
 interface Props {
-  children: any;
+  children: object;
 }
 
 //This component is class based component because error catching lifecycle methods are available for Class based components only
@@ -20,14 +20,14 @@ export default class ErrorBoundary extends React.Component<
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error: Error) {
+  static getDerivedStateFromError() {
     // Update state so the next render will show the fallback UI.
     return { hasError: true };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     // We can also log the error to an error reporting service
-    Logger.log("Some JS error occurred", error, errorInfo);
+    Logger.log('Some JS error occurred', error, errorInfo);
   }
 
   render() {
@@ -48,7 +48,7 @@ export default class ErrorBoundary extends React.Component<
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

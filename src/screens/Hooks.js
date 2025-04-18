@@ -5,14 +5,14 @@ import React, {
   forwardRef,
   useEffect,
   useState,
-} from "react";
-import { Text, View, Button, TextInput } from "react-native";
+} from 'react';
+import { Text, View, Button, TextInput } from 'react-native';
 
 function reducer(state, action) {
   switch (action.type) {
-    case "increment":
+    case 'increment':
       return { count: state.count + 1 };
-    case "decrement":
+    case 'decrement':
       return { count: state.count - 1 };
     default:
       throw new Error();
@@ -35,7 +35,7 @@ const CustomTextInput = forwardRef((props, ref) => {
     <View>
       <TextInput
         ref={childRef}
-        style={{ borderColor: "grey", borderWidth: 1, marginHorizontal: 15 }}
+        style={{ borderColor: 'grey', borderWidth: 1, marginHorizontal: 15 }}
         placeholder="Enter your text"
       />
     </View>
@@ -51,15 +51,15 @@ const Hooks = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://jsonplaceholder.typicode.com/posts"
+          'https://jsonplaceholder.typicode.com/posts'
         );
         const res = await response.json();
-        console.log("res", res);
+        console.log('res', res);
         if (res) {
           setApiData(res);
         }
       } catch (err) {
-        console.log("ERR", err);
+        console.log('ERR', err);
       }
     };
     fetchData();
@@ -70,11 +70,11 @@ const Hooks = () => {
       <Text>{state.count}</Text>
       <Button
         title="Inc Count"
-        onPress={() => dispatch({ type: "increment" })}
+        onPress={() => dispatch({ type: 'increment' })}
       />
       <Button
         title="Dec Count"
-        onPress={() => dispatch({ type: "decrement" })}
+        onPress={() => dispatch({ type: 'decrement' })}
       />
       <CustomTextInput ref={parentRef} />
       <Button title="Focus" onPress={() => parentRef.current.childFocus()} />

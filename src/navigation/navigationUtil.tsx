@@ -1,16 +1,15 @@
-import * as React from "react";
-import { View, Text } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import HomeScreen from "../screens/HomeScreen";
-import SettingsScreen from "../screens/Settings";
-import LottieAnim from "../screens/Lottie";
-import HomeScreenMain from "../screens/HomeScreenMain";
-import HomeScreenClassComp from "../screens/HomeScreenClassComp";
-import AdvancedComp from "../screens/AdvancedComp";
-import ForwardRef from "../screens/ForwardRef";
-import Hooks from "../screens/Hooks";
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import HomeScreen from '../screens/HomeScreen';
+import SettingsScreen from '../screens/Settings';
+import LottieAnim from '../screens/Lottie';
+import HomeScreenMain from '../screens/HomeScreenMain';
+import HomeScreenClassComp from '../screens/HomeScreenClassComp';
+import AdvancedComp from '../screens/AdvancedComp';
+import ForwardRef from '../screens/ForwardRef';
+import Hooks from '../screens/Hooks';
 
 function RootStack(): JSX.Element {
   const Stack = createNativeStackNavigator();
@@ -47,6 +46,7 @@ export default function AppNavigator(): JSX.Element {
   return (
     <NavigationContainer>
       <RootStack />
+      {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
       {/* <MyDrawer /> */}
     </NavigationContainer>
   );

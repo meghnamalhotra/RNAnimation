@@ -5,11 +5,10 @@
  * @format
  */
 
-import React, { useState } from "react";
-import { StyleSheet } from "react-native";
-import ErrorBoundary from "./src/components/ErrorBoundary";
-import AppNavigator from "./src/navigation/navigationUtil";
-import MyProvider from "./src/context/MyProvider";
+import React from 'react';
+import ErrorBoundary from './src/components/ErrorBoundary';
+import AppNavigator from './src/navigation/navigationUtil';
+import MyProvider from './src/context/MyProvider';
 
 function App(): JSX.Element {
   return (

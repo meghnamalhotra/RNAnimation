@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   Platform,
   TouchableOpacity,
-} from "react-native";
+} from 'react-native';
 // import { useNavigation } from '@react-navigation/native';
 
 const Greetings = (props) => {
@@ -21,13 +21,13 @@ function HomeScreenMain() {
   const [count, updateCount] = useState(0);
 
   useEffect(() => {
-    console.log("Mounted");
+    console.log('Mounted');
     const interval = setInterval(() => {
       updateCount(count + 1);
     }, 1000);
 
     return () => {
-      console.log("Mounted");
+      console.log('Mounted');
       clearInterval(interval);
       //unmounting
     };
@@ -42,14 +42,14 @@ function HomeScreenMain() {
         <View
           style={[
             styles.box,
-            Platform.OS === "ios"
-              ? { backgroundColor: "blue", flex: 0.25 }
+            Platform.OS === 'ios'
+              ? { backgroundColor: 'blue', flex: 0.25 }
               : {},
           ]}
         />
-        <View style={[styles.box, { backgroundColor: "red", flex: 0.25 }]} />
-        <View style={[styles.box, { backgroundColor: "green", flex: 0.25 }]} />
-        <View style={[styles.box, { backgroundColor: "yellow", flex: 0.25 }]} />
+        <View style={[styles.box, { backgroundColor: 'red', flex: 0.25 }]} />
+        <View style={[styles.box, { backgroundColor: 'green', flex: 0.25 }]} />
+        <View style={[styles.box, { backgroundColor: 'yellow', flex: 0.25 }]} />
         <Greetings name="Neha" />
       </View>
       {data ? (
@@ -57,7 +57,7 @@ function HomeScreenMain() {
           onPress={() => {
             setData(!data);
           }}
-          style={{ height: 30, width: 60, backgroundColor: "red" }}
+          style={{ height: 30, width: 60, backgroundColor: 'red' }}
         >
           <Text>Click Here!</Text>
         </TouchableOpacity>
@@ -66,7 +66,7 @@ function HomeScreenMain() {
           onPress={() => {
             setData(!data);
           }}
-          style={{ height: 30, width: 60, backgroundColor: "orange" }}
+          style={{ height: 30, width: 60, backgroundColor: 'orange' }}
         >
           <Text>Press Here!</Text>
         </TouchableOpacity>
@@ -82,17 +82,17 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginVertical: 50,
     flex: 0.5,
-    flexDirection: "row",
-    justifyContent: "center",
-    backgroundColor: "white",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    backgroundColor: 'white',
   },
   textStyle: {
-    textAlign: "center",
+    textAlign: 'center',
   },
   box: {
     height: 50,
     width: 50,
-    backgroundColor: "pink",
+    backgroundColor: 'pink',
     margin: 10,
   },
 });
