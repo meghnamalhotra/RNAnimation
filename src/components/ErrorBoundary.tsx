@@ -7,7 +7,7 @@ interface ErrorBoundaryState {
 }
 
 interface Props {
-  children: object;
+  children: React.ReactNode;
 }
 
 //This component is class based component because error catching lifecycle methods are available for Class based components only
