@@ -13,6 +13,10 @@ const DATA = [
     {
         id: '3',
         title: 'Title 3'
+    },
+    {
+        id: '4',
+        title: 'Title 4'
     }
 ]
 
