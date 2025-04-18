@@ -13,26 +13,29 @@ import ForwardRef from '../screens/ForwardRef';
 import Hooks from '../screens/Hooks';
 
 function RootStack(): JSX.Element {
-    const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator();
 
-    return (
-      <Stack.Navigator>
-        {/* <Stack.Screen name="Hooks" component={Hooks} />
+  return (
+    <Stack.Navigator>
+      {/* <Stack.Screen name="Hooks" component={Hooks} />
         <Stack.Screen name="ForwardRef" component={ForwardRef} /> */}
-        <Stack.Screen name="AdvancedComp" component={AdvancedComp} />
-        <Stack.Screen name="HomeScreenClassComp" component={HomeScreenClassComp} />
-         <Stack.Screen name="HomeScreenMain" component={HomeScreenMain} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
-        <Stack.Screen name="Lottie" component={LottieAnim} />
-      </Stack.Navigator>
-    );
-  }
-  
-function MyDrawer(): JSX.Element {
-    const Drawer = createDrawerNavigator();
+      <Stack.Screen name="AdvancedComp" component={AdvancedComp} />
+      <Stack.Screen
+        name="HomeScreenClassComp"
+        component={HomeScreenClassComp}
+      />
+      <Stack.Screen name="HomeScreenMain" component={HomeScreenMain} />
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Settings" component={SettingsScreen} />
+      <Stack.Screen name="Lottie" component={LottieAnim} />
+    </Stack.Navigator>
+  );
+}
 
-    return (
+function MyDrawer(): JSX.Element {
+  const Drawer = createDrawerNavigator();
+
+  return (
     <Drawer.Navigator>
       <Drawer.Screen name="Hooks" component={Hooks} />
       <Drawer.Screen name="ForwardRef" component={ForwardRef} />
@@ -41,10 +44,10 @@ function MyDrawer(): JSX.Element {
 }
 
 export default function AppNavigator(): JSX.Element {
-    return (
-      <NavigationContainer>
-        <RootStack />
-        {/* <MyDrawer /> */}
-      </NavigationContainer>
-    );
-  }
+  return (
+    <NavigationContainer>
+      <RootStack />
+      {/* <MyDrawer /> */}
+    </NavigationContainer>
+  );
+}

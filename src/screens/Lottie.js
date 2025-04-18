@@ -18,13 +18,13 @@ export default function LottieAnim() {
 
   return (
     <AnimatedLottieView
-    colorFilters={[
+      colorFilters={[
         {
           keypath: 'No Data Found Outlines',
           color: 'orange',
         },
       ]}
-      style={{flex: 1}}
+      style={{ flex: 1 }}
       source={require('../assets/lottieFiles/NoData.json')}
       progress={animationProgress.current}
     />

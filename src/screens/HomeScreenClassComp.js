@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text, TouchableOpacity} from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 
 //UPDATE -> Props / State change
 
@@ -44,7 +44,7 @@ import {View, Text, TouchableOpacity} from 'react-native';
 //             return{
 
 //             }
-        
+
 //     }
 
 //     componentDidUpdate(prevProps, prevState, snapshot){
@@ -108,25 +108,22 @@ import {View, Text, TouchableOpacity} from 'react-native';
 //     }
 // }
 
-
-
 // class HomeScreenClassComp extends React.Component {
 
 // }
 
 const HomeScreenClassComp = () => {
-    return(
-       <FuncComp3/>   
-    )
-}
-const FuncComp1 = (props) => {  //Reusable Code
-    return(
-        <View style={{backgroundColor: props.color}}>
-            <Text>Common Text</Text>
-           {props.children}
-        </View>
-    )
-}
+  return <FuncComp3 />;
+};
+const FuncComp1 = (props) => {
+  //Reusable Code
+  return (
+    <View style={{ backgroundColor: props.color }}>
+      <Text>Common Text</Text>
+      {props.children}
+    </View>
+  );
+};
 // const FuncComp2 = () => {
 //     return(
 //         <FuncComp1 color="orange">
@@ -141,14 +138,12 @@ const FuncComp1 = (props) => {  //Reusable Code
 // }
 
 const FuncComp3 = () => {
-    return(
-        <FuncComp1 color="blue">
-            <Text>
-                HI All! welcome
-            </Text>
-        </FuncComp1>
-    )
-}
+  return (
+    <FuncComp1 color="blue">
+      <Text>HI All! welcome</Text>
+    </FuncComp1>
+  );
+};
 
 export default HomeScreenClassComp;
 

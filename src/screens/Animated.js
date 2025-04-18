@@ -37,7 +37,6 @@
 
 // export default AnimatedComp;
 
-
 // import { Button, View } from 'react-native';
 // import Animated, { useSharedValue, withTiming, withSpring } from 'react-native-reanimated';
 
@@ -71,7 +70,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-const AnimatedComp= () => {
+const AnimatedComp = () => {
   const animatedColor = useSharedValue('blue');
   const animatedSize = useSharedValue(100);
   const animatedPositionX = useSharedValue(0);
@@ -84,7 +83,10 @@ const AnimatedComp= () => {
   const handlePress = () => {
     // Randomize color, size, and position on each tap
     animatedColor.value = withTiming(
-      `rgb(${getRandomValue(0, 255)}, ${getRandomValue(0, 255)}, ${getRandomValue(0, 255)})`,
+      `rgb(${getRandomValue(0, 255)}, ${getRandomValue(
+        0,
+        255
+      )}, ${getRandomValue(0, 255)})`,
       { duration: 500 }
     );
 
@@ -126,4 +128,3 @@ const styles = StyleSheet.create({
 });
 
 export default AnimatedComp;
-

@@ -6,20 +6,19 @@
  * @desc Logger util for log & warn function enabled only in debug mode.
  */
 class Logger {
-    devMode = __DEV__;
-  
-    log(...args) {
-      if (this.devMode) {
-        console.log(...args);
-      }
-    }
-  
-    warn(...args) {
-      if (this.devMode) {
-        console.warn(...args);
-      }
+  devMode = __DEV__;
+
+  log(...args) {
+    if (this.devMode) {
+      console.log(...args);
     }
   }
-  
-  export default new Logger();
-  
+
+  warn(...args) {
+    if (this.devMode) {
+      console.warn(...args);
+    }
+  }
+}
+
+export default new Logger();

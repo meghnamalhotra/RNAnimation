@@ -1,29 +1,31 @@
-import React, {useState, useRef, useEffect, useContext} from 'react';
-import {View, Text, TouchableOpacity, Button} from 'react-native'
-import {
-    useNavigation,
-  } from '@react-navigation/native';
-  import Animated,{ useSharedValue, useAnimatedProps, withTiming } from 'react-native-reanimated';
-  import Svg, { Circle, Rect } from 'react-native-svg';
-  import MyContext from '../context/MyContext';
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import { View, Text, TouchableOpacity, Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import Animated, {
+  useSharedValue,
+  useAnimatedProps,
+  withTiming,
+} from 'react-native-reanimated';
+import Svg, { Circle, Rect } from 'react-native-svg';
+import MyContext from '../context/MyContext';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 function HomeScreen() {
-  useEffect(()=>{
-    console.log('Mounted')
+  useEffect(() => {
+    console.log('Mounted');
 
     return () => {
-      console.log('UnMounted')
+      console.log('UnMounted');
       //unmounting
-    }
-  },[]);
-//  const fadeAnim = useRef(new Animated.Value(0)).current;
- const r = useSharedValue(10);
- const color = useSharedValue('rgb(43,88,87)');
- const [switchState, setSwitchState] = useState(true);
- const navigation = useNavigation();
- const {data, setData, data1, setData1} = useContext(MyContext);
+    };
+  }, []);
+  //  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const r = useSharedValue(10);
+  const color = useSharedValue('rgb(43,88,87)');
+  const [switchState, setSwitchState] = useState(true);
+  const navigation = useNavigation();
+  const { data, setData, data1, setData1 } = useContext(MyContext);
   // const fadeIn = () => {
   //   Animated.timing(fadeAnim, {
   //     toValue: 1,
@@ -33,17 +35,25 @@ function HomeScreen() {
   // };
 
   const animatedProps = useAnimatedProps(() => {
-   return{
-    r: withTiming(r.value),
-    color: color.value,
-   }
+    return {
+      r: withTiming(r.value),
+      color: color.value,
+    };
   });
 
   const handlePress = (reverse = false) => {
-    const myArray = ['rgb(41,8,87)', 'rgb(43,199,87)', 'rgb(430,2,87)', 'rgb(22,22,111)', 'rgb(43,88,87)', 'rgb(230,230,250)', 'rgb(255,165,0)'];  
-   const randomElement = myArray[Math.floor(Math.random() * myArray.length)];  
+    const myArray = [
+      'rgb(41,8,87)',
+      'rgb(43,199,87)',
+      'rgb(430,2,87)',
+      'rgb(22,22,111)',
+      'rgb(43,88,87)',
+      'rgb(230,230,250)',
+      'rgb(255,165,0)',
+    ];
+    const randomElement = myArray[Math.floor(Math.random() * myArray.length)];
     r.value = reverse ? r.value - 5 : r.value + 5;
-    color.value = randomElement
+    color.value = randomElement;
   };
 
   // const fadeOut = () => {
@@ -54,9 +64,16 @@ function HomeScreen() {
   //   }).start();
   // };
 
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'yellow' }}>
-    {/* <Animated.View
+  return (
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'yellow',
+      }}
+    >
+      {/* <Animated.View
         style={{
           opacity: fadeAnim,
           width: 250,
@@ -71,7 +88,15 @@ function HomeScreen() {
         <Text>Fade In</Text>
       </TouchableOpacity> */}
       <Svg height="80%" width="100%" viewBox="0 0 100 100">
-        <AnimatedCircle animatedProps= {animatedProps} cx="50" cy="50" r={r} stroke={color} strokeWidth="10" fill="yellow" />
+        <AnimatedCircle
+          animatedProps={animatedProps}
+          cx="50"
+          cy="50"
+          r={r}
+          stroke={color}
+          strokeWidth="10"
+          fill="yellow"
+        />
       </Svg>
       <TouchableOpacity onPress={() => handlePress(false)}>
         <Text>Magic</Text>
@@ -84,9 +109,12 @@ function HomeScreen() {
       </TouchableOpacity>
       <Text>{data1}</Text>
       <Text>{data}</Text>
-      <Button title = 'Update Data 1' onPress={()=> setData1('New updated data 1 from context')} />
-      </View>
-    );
-  }
+      <Button
+        title="Update Data 1"
+        onPress={() => setData1('New updated data 1 from context')}
+      />
+    </View>
+  );
+}
 
-  export default HomeScreen;
+export default HomeScreen;

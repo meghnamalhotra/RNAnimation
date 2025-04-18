@@ -7,7 +7,7 @@ import Animated, {
   Easing,
   withTiming,
   repeat,
-  withRepeat
+  withRepeat,
 } from 'react-native-reanimated';
 
 const SettingsScreen = () => {
@@ -15,12 +15,16 @@ const SettingsScreen = () => {
   const rotation = useSharedValue(0);
 
   const rotateSquare = () => {
-    rotation.value = withRepeat(withTiming(
-      360,
-      { duration: 2000, easing: Easing.bezier(0.25, -0.5, 0.25, 1) },
-    ), 10, true)
+    rotation.value = withRepeat(
+      withTiming(360, {
+        duration: 2000,
+        easing: Easing.bezier(0.25, -0.5, 0.25, 1),
+      }),
+      10,
+      true
+    );
   };
-  useEffect(()=> {
+  useEffect(() => {
     rotateSquare();
   }, []);
 
@@ -33,7 +37,12 @@ const SettingsScreen = () => {
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.square, animatedStyle]} />
-      <TouchableOpacity onPress={() => {navigation.navigate('Lottie')}}style={{marginTop: 50}}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Lottie');
+        }}
+        style={{ marginTop: 50 }}
+      >
         <Text>Move to next screen!</Text>
       </TouchableOpacity>
     </View>
