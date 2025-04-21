@@ -1,71 +1,45 @@
-name: Android Release Build
+name: Build Android Release
 
 on:
-  workflow_dispatch:  # manually triggered
   push:
-    branches:
-      - main           # or 'release' if you use a release branch
+    branches: [main]  # or any branch you release from
 
 jobs:
-  build-android:
-    name: Build Signed Android App
+  build:
     runs-on: ubuntu-latest
 
-    env:
-      # Optional: Java home path for compatibility
-      JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
-
     steps:
-      - name: 📥 Checkout repository
+      - name: ⬇️ Checkout repository
         uses: actions/checkout@v3
 
-      - name: ⚙️ Set up JDK 17
+      - name: 🔧 Set up JDK
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: 17
+          java-version: '17'
 
-      - name: 🧱 Install Node & Yarn
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: 📦 Install dependencies
+      - name: 🧱 Install dependencies
         run: |
-          yarn install --frozen-lockfile
+          yarn install
 
-      - name: 🔐 Decode Keystore from GitHub Secret
+      - name: 📦 Decode keystore from base64
         env:
             KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
         run: |
-            echo "$KEYSTORE_BASE64" | base64 -d > android/app/my-release-key.keystore
+            echo "$KEYSTORE_BASE64" | base64 --decode > android/app/my-release-key.keystore
+        
 
-      - name: 🧾 Inject Signing Credentials
+      - name: 🚀 Build release APK
         run: |
-          echo "MYAPP_UPLOAD_STORE_FILE=my-release-key.keystore" >> android/gradle.properties
-          echo "MYAPP_UPLOAD_KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> android/gradle.properties
-          echo "MYAPP_UPLOAD_STORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}" >> android/gradle.properties
-          echo "MYAPP_UPLOAD_KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> android/gradle.properties
+          cd android
+          ./gradlew assembleRelease
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
-
-      - name: 🛠️ Build Signed AAB (App Bundle)
-        working-directory: android
-        run: ./gradlew bundleRelease
-
-      # OPTIONAL: build APK instead
-      # - name: 🛠️ Build Signed APK
-      #   working-directory: android
-      #   run: ./gradlew assembleRelease
-
-    #   - name: 📤 Upload release AAB artifact
-    #     uses: actions/upload-artifact@v3
-    #     with:
-    #       name: app-release.aab
-    #       path: android/app/build/outputs/bundle/release/app-release.aab
-
-      # OPTIONAL: Publish to Google Play with Fastlane
-      # - name: 🚀 Deploy to Google Play
-      #   run: |
-      #     cd android
-      #     bundle install
-      #     fastlane deploy
+      - name: 📤 Upload APK artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release.apk
+          path: android/app/build/outputs/apk/release/app-release.apk
