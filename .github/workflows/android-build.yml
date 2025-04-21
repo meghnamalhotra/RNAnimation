@@ -54,11 +54,11 @@ jobs:
       #   working-directory: android
       #   run: ./gradlew assembleRelease
 
-      - name: 📤 Upload release AAB artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: app-release.aab
-          path: android/app/build/outputs/bundle/release/app-release.aab
+    #   - name: 📤 Upload release AAB artifact
+    #     uses: actions/upload-artifact@v3
+    #     with:
+    #       name: app-release.aab
+    #       path: android/app/build/outputs/bundle/release/app-release.aab
 
       # OPTIONAL: Publish to Google Play with Fastlane
       # - name: 🚀 Deploy to Google Play
