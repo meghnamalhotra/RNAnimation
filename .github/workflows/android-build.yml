@@ -46,27 +46,11 @@ jobs:
           echo "MYAPP_UPLOAD_KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> android/gradle.properties
           echo "MYAPP_UPLOAD_STORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}" >> android/gradle.properties
           echo "MYAPP_UPLOAD_KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> android/gradle.properties
-      - name: Check if secrets are injected
-        run: |
-          if [ -z "$KEYSTORE_PASSWORD" ]; then
-              echo "❌ KEYSTORE_PASSWORD is not set"
-           else
-              echo "✅ KEYSTORE_PASSWORD is set"
-            fi
-        
-            if [ -z "$KEY_ALIAS" ]; then
-              echo "❌ KEY_ALIAS is not set"
-            else
-              echo "✅ KEY_ALIAS is set"
-            fi
-          env:
-            KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-            KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-        
 
-    #   - name: 🛠️ Build Signed AAB (App Bundle)
-    #     working-directory: android
-    #     run: ./gradlew bundleRelease
+
+      - name: 🛠️ Build Signed AAB (App Bundle)
+        working-directory: android
+        run: ./gradlew bundleRelease
 
       # OPTIONAL: build APK instead
       # - name: 🛠️ Build Signed APK
