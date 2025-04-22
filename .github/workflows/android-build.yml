@@ -1,22 +1,47 @@
-name: Android Release Build
+name: React Native CI
 
 on:
-  workflow_dispatch:  # manually triggered
   push:
-    branches:
-      - main           # or 'release' if you use a release branch
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
-  build-android:
-    name: Build Signed Android App
+  lint-and-test:
+    name: Lint & Test
     runs-on: ubuntu-latest
 
+    steps:
+      - name: 📦 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🟢 Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: 📥 Install dependencies
+        run: npm ci
+
+      - name: 🧹 Lint code
+        run: npm run lint
+
+      # Add your tests here if you have any
+      # - name: 🧪 Run tests
+      #   run: npm test
+
+  build-android:
+    name: Build Signed Android APK
+    runs-on: ubuntu-latest
+    needs: lint-and-test  # wait for lint to pass before building
+
     env:
-      # Optional: Java home path for compatibility
       JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
 
     steps:
-      - name: 📥 Checkout repository
+      - name: 📦 Checkout repository
         uses: actions/checkout@v3
 
       - name: ⚙️ Set up JDK 17
@@ -25,20 +50,29 @@ jobs:
           distribution: 'temurin'
           java-version: 17
 
-      - name: 🧱 Install Node & Yarn
+      - name: 🧱 Set up Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: 'npm'
 
-      - name: 📦 Install dependencies
-        run: |
-          yarn install --frozen-lockfile
+      - name: ♻️ Cache Gradle
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: 📦 Install Dependencies
+        run: npm ci
 
       - name: 🔐 Decode Keystore from GitHub Secret
         env:
-            KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-        run: |
-            echo "$KEYSTORE_BASE64" | base64 -d > android/app/my-release-key.keystore
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        run: echo "$KEYSTORE_BASE64" | base64 -d > android/app/my-release-key.keystore
 
       - name: 🧾 Inject Signing Credentials
         run: |
@@ -46,26 +80,16 @@ jobs:
           echo "MYAPP_UPLOAD_KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> android/gradle.properties
           echo "MYAPP_UPLOAD_STORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}" >> android/gradle.properties
           echo "MYAPP_UPLOAD_KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> android/gradle.properties
-        
 
-      # - name: 🛠️ Build Signed AAB (App Bundle)
-      #   working-directory: android
-      #   run: ./gradlew bundleRelease
-
-      # OPTIONAL: build APK instead
       - name: 🛠️ Build Signed APK
         working-directory: android
         run: ./gradlew assembleRelease
 
-    #   - name: 📤 Upload release AAB artifact
-    #     uses: actions/upload-artifact@v3
-    #     with:
-    #       name: app-release.aab
-    #       path: android/app/build/outputs/bundle/release/app-release.aab
+      - name: 📤 Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release.apk
+          path: android/app/build/outputs/apk/release/app-release.apk
 
-      # OPTIONAL: Publish to Google Play with Fastlane
-      # - name: 🚀 Deploy to Google Play
-      #   run: |
-      #     cd android
-      #     bundle install
-      #     fastlane deploy
+      - name: 📋 Debug Reanimated Version
+        run: npm list react-native-reanimated
