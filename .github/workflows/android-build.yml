@@ -48,14 +48,14 @@ jobs:
           echo "MYAPP_UPLOAD_KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> android/gradle.properties
         
 
-      - name: 🛠️ Build Signed AAB (App Bundle)
-        working-directory: android
-        run: ./gradlew bundleRelease
+      # - name: 🛠️ Build Signed AAB (App Bundle)
+      #   working-directory: android
+      #   run: ./gradlew bundleRelease
 
       # OPTIONAL: build APK instead
-      # - name: 🛠️ Build Signed APK
-      #   working-directory: android
-      #   run: ./gradlew assembleRelease
+      - name: 🛠️ Build Signed APK
+        working-directory: android
+        run: ./gradlew assembleRelease
 
     #   - name: 📤 Upload release AAB artifact
     #     uses: actions/upload-artifact@v3
